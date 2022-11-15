@@ -2,9 +2,13 @@ import React from 'react';
 import { useEffect, useState } from "react";
 
 
-const myUser = JSON.parse(localStorage.getItem('user'))
-console.log(myUser.id);
-
+let myUser;
+if (localStorage.getItem('user')) {
+    try {
+        myUser = JSON.parse(localStorage.getItem('user'))
+        console.log(myUser.id);
+    } catch (error) { }
+}
 
 
 const Todos = () => {

@@ -4,8 +4,13 @@ import { useEffect, useState } from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; 
 import { Carousel } from 'react-responsive-carousel';
 
-const myUser = JSON.parse(localStorage.getItem('user'))
-console.log(myUser.id);
+let myUser;
+if (localStorage.getItem('user')) {
+    try {
+        myUser = JSON.parse(localStorage.getItem('user'))
+        console.log(myUser.id);
+    } catch (error) { }
+}
 const Photos = () => {
     const [photos, setPhotos] = useState([])
 

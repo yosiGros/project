@@ -3,9 +3,13 @@ import React from 'react'
 import { useEffect, useState } from "react";
 import { Link, Outlet } from 'react-router-dom';
 
-
-const myUser = JSON.parse(localStorage.getItem('user'))
-console.log(myUser.id);
+let myUser;
+if (localStorage.getItem('user')) {
+    try {
+        myUser = JSON.parse(localStorage.getItem('user'))
+        console.log(myUser.id);
+    } catch (error) { }
+}
 const Posts = () => {
     const [posts, setPosts] = useState([])
 
@@ -20,12 +24,12 @@ const Posts = () => {
         {
             posts.map((item, idx) =>
                 <div key={idx}>
-                    <h1  style={{ "border": "solid 1px", "backgroundColor": "pink" }}>
-                    title: <Link to='Comments' type="text" >{item.title}</Link> 
-                   </h1>
+                    <h1 style={{ "border": "solid 1px", "backgroundColor": "pink" }}>
+                        title: <Link to='Comments' type="text" >{item.title}</Link>
+                    </h1>
                 </div>)
         }
-        <Outlet/>
+        <Outlet />
     </div>
 
 }
